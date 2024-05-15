@@ -1,0 +1,126 @@
+<div class="formContainer">
+  <div style="width: 500px">
+    <h3 class="" style="margin-bottom: 30px; text-align: center">
+      SM - Registration
+    </h3>
+
+    <form (ngSubmit)="submitForm(myForm)" #myForm="ngForm">
+      <div class="space-between">
+        <label for="firstName">First Name:</label>
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          maxlength="50"
+          minlength="3"
+          required
+          [(ngModel)]="firstName"
+        />
+      </div>
+      <div class="space-between">
+        <label for="lastName">Last Name:</label>
+        <input
+          type="text"
+          id="lastName"
+          name="lastName"
+          maxlength="50"
+          minlength="3"
+          required
+          [(ngModel)]="lastName"
+        />
+      </div>
+      <div class="space-between">
+        <label>Gender:</label>
+        <label for="male">
+          <input
+            type="radio"
+            id="male"
+            name="gender"
+            value="Male"
+            required
+            [(ngModel)]="gender"
+          />
+          Male
+        </label>
+        <label for="female">
+          <input
+            type="radio"
+            id="female"
+            name="gender"
+            value="Female"
+            required
+            [(ngModel)]="gender"
+          />
+          Female
+        </label>
+      </div>
+      <div class="space-between">
+        <label for="position">Position:</label>
+        <select id="position" name="position" required [(ngModel)]="position">
+          <option value="">Select Position</option>
+          <option value="Student">Student</option>
+          <option value="Teacher">Teacher</option>
+          <option value="Non-academic staff">Non-academic staff</option>
+        </select>
+      </div>
+      <div class="space-between">
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          minlength="6"
+          required
+          [(ngModel)]="password"
+        />
+      </div>
+      <div class="space-between">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          minlength="6"
+          required
+          [(ngModel)]="confirmPassword"
+        />
+      </div>
+      <div
+        *ngIf="
+          myForm.controls['password'].touched &&
+          myForm.controls['confirmPassword'].touched &&
+          myForm.controls['password'].value !==
+            myForm.controls['confirmPassword'].value
+        "
+        class="space-between"
+      >
+        <span></span>
+        <span style="color: red">Passwords do not match.</span>
+      </div>
+      <button type="submit" class="">Submit</button>
+    </form>
+  </div>
+
+  <div style="width: 500px; overflow-x: auto; min-height: 400px">
+    <table style="width: 100%">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Gender</th>
+          <th>Position</th>
+          <th>Password</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let output of formOutputs">
+          <td>{{ output.firstName }}</td>
+          <td>{{ output.lastName }}</td>
+          <td>{{ output.gender }}</td>
+          <td>{{ output.position }}</td>
+          <td>{{ output.password }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
